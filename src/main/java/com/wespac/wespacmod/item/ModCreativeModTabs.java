@@ -1,20 +1,18 @@
 package com.wespac.wespacmod.item;
 
+import com.wespac.wespacmod.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
 import com.wespac.wespacmod.WespacMod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = WespacMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModCreativeModeTabs {
 
+public class ModCreativeModTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, WespacMod.MODID);
 
@@ -25,6 +23,7 @@ public class ModCreativeModeTabs {
                         for (RegistryObject<Item> item : ModItems.MONEY_ITEMS.values()) {
                             pOutput.accept(item.get());
                         }
+                        pOutput.accept(ModBlocks.GEM_POLISHING_STATION.get());
 
                     })
                     .build());

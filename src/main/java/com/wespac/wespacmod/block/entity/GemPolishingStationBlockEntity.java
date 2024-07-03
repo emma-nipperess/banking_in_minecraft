@@ -98,7 +98,7 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.tutorialmod.gem_polishing_station");
+        return Component.translatable("block.wespacmod.gem_polishing_station");
     }
 
     @Nullable
@@ -141,8 +141,8 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
     }
 
     private void craftItem() {
-        ItemStack result = new ItemStack(ModItems.MONEY_ITEMS.get("one_dollar_coin").get(), 1);
-        this.itemHandler.extractItem(INPUT_SLOT, 5, false);
+        ItemStack result = new ItemStack(ModItems.MONEY_ITEMS.get("one_dollar_coin").get(), 5);
+        this.itemHandler.extractItem(INPUT_SLOT, 1, false);
 
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
                 this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));

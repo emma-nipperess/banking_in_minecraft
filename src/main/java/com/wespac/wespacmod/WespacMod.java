@@ -1,16 +1,18 @@
 package com.wespac.wespacmod;
 
 import com.mojang.logging.LogUtils;
+import com.wespac.wespacmod.block.ModBlocks;
 import com.wespac.wespacmod.block.entity.ModBlockEntities;
-import com.wespac.wespacmod.item.ModCreativeModeTabs;
+import com.wespac.wespacmod.item.ModCreativeModTabs;
 import com.wespac.wespacmod.item.ModItems;
+import com.wespac.wespacmod.screen.GemPolishingStationScreen;
 import com.wespac.wespacmod.screen.ModMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
-import net.minecraftforge.eventbus.EventBus;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -34,21 +36,22 @@ public class WespacMod
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        // Register the creative mode tab
+        ModCreativeModTabs.register(modEventBus);
+
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+
+        // mod block entit
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+
+
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        // Register the creative mode tab
-        ModCreativeModeTabs.register(modEventBus);
-
-        ModMenuTypes.register(modEventBus);
-
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
-        // mod block entit
-        ModBlockEntities.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -78,6 +81,7 @@ public class WespacMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
         }
     }
 }
