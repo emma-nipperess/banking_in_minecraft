@@ -3,7 +3,10 @@ package com.wespac.wespacmod.block.custom;
 import com.mojang.serialization.MapCodec;
 import com.wespac.wespacmod.block.entity.GemPolishingStationBlockEntity;
 import com.wespac.wespacmod.block.entity.ModBlockEntities;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -22,7 +25,10 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import okhttp3.*;
 import org.jetbrains.annotations.Nullable;
+
+import java.io.IOException;
 
 public class GemPolishingStationBlock extends BaseEntityBlock {
     public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 12, 16);
@@ -59,12 +65,34 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof GemPolishingStationBlockEntity) {
                 NetworkHooks.openScreen(((ServerPlayer)pPlayer), (GemPolishingStationBlockEntity)entity, pPos);
+
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
         }
 
+
+
+
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
+    }
+    private static final OkHttpClient client = new OkHttpClient();
+    private static final String API_URL =  "http://10.89.247.191:9000/";
+    private static final String API_KEY = "your-api-key";
+
+    private static void sendChatMessage(String message, Callback callback) {
+        RequestBody body = new FormBody.Builder()
+                .add("prompt", message)
+                .add("max_tokens", "150")
+                .build();
+
+        Request request = new Request.Builder()
+                .url(API_URL)
+                // .addHeader("Authorization", "Bearer " + API_KEY)
+                .get()
+                .build();
+
+        client.newCall(request).enqueue(callback);
     }
 
     @Nullable
