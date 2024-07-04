@@ -16,6 +16,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("gem_polishing_be", () ->
                     BlockEntityType.Builder.of(GemPolishingStationBlockEntity::new,
                             ModBlocks.GEM_POLISHING_STATION.get()).build(null));
+    public static final RegistryObject<BlockEntityType<GemPolishingStationBlockEntity>> TELLER_BE =
+            BLOCK_ENTITIES.register("teller_be", () ->
+                    BlockEntityType.Builder.of(GemPolishingStationBlockEntity::new,
+                            ModBlocks.TELLER.get()).build(null));
 
 
     public static void register(IEventBus eventBus) {
