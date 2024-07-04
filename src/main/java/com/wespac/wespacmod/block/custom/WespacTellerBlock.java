@@ -1,6 +1,5 @@
 package com.wespac.wespacmod.block.custom;
 
-import com.wespac.wespacmod.block.entity.GemPolishingStationBlockEntity;
 import com.wespac.wespacmod.block.entity.ModBlockEntities;
 import com.wespac.wespacmod.block.entity.WespacTellerBlockEntity;
 import net.minecraft.client.Minecraft;
@@ -40,8 +39,8 @@ public class WespacTellerBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof GemPolishingStationBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (GemPolishingStationBlockEntity)entity, pPos);
+            if(entity instanceof WespacTellerBlockEntity) {
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (WespacTellerBlockEntity)entity, pPos);
 
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
@@ -59,6 +58,11 @@ public class WespacTellerBlock extends BaseEntityBlock {
         return new WespacTellerBlockEntity(pPos, pState);
     }
 
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
+    }
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
@@ -66,7 +70,7 @@ public class WespacTellerBlock extends BaseEntityBlock {
             return null;
         }
 
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.GEM_POLISHING_BE.get(),
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.WESPAC_TELLER_BE.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
 }

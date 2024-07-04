@@ -1,7 +1,7 @@
 package com.wespac.wespacmod.block.entity;
 
 import com.wespac.wespacmod.item.ModItems;
-import com.wespac.wespacmod.screen.GemPolishingStationMenu;
+import com.wespac.wespacmod.screen.WespacTellerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -43,23 +43,32 @@ public class WespacTellerBlockEntity extends BlockEntity implements MenuProvider
     private int progress = 0;
     private int maxProgress = 78;
 
-    // Currency conversion map
-    private static final Map<Item, Map<Item, Integer>> CURRENCY_CONVERSION_MAP = new HashMap<>();
-
-    static {
-        // Example conversion map
-        // 5 dollar note -> 3 one dollar coins + 1 two dollar coin
-        Map<Item, Integer> fiveDollarConversion = new HashMap<>();
-        fiveDollarConversion.put(ModItems.MONEY_ITEMS.get("one_dollar_coin").get(), 3);
-        fiveDollarConversion.put(ModItems.MONEY_ITEMS.get("two_dollar_coin").get(), 1);
-        CURRENCY_CONVERSION_MAP.put(ModItems.MONEY_ITEMS.get("five_dollar_note").get(), fiveDollarConversion);
-
-        // Add other conversions as needed
-    }
-
     public WespacTellerBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.WESPAC_TELLER_BE.get(), pPos, pBlockState);
-        this.data = null;
+
+        this.data = new ContainerData() {
+            @Override
+            public int get(int pIndex) {
+                return switch (pIndex) {
+                    case 0 -> WespacTellerBlockEntity.this.progress;
+                    case 1 -> WespacTellerBlockEntity.this.maxProgress;
+                    default -> 0;
+                };
+            }
+
+            @Override
+            public void set(int pIndex, int pValue) {
+                switch (pIndex) {
+                    case 0 -> WespacTellerBlockEntity.this.progress = pValue;
+                    case 1 -> WespacTellerBlockEntity.this.maxProgress = pValue;
+                }
+            }
+
+            @Override
+            public int getCount() {
+                return 2;
+            }
+        };
     }
 
     @Override
@@ -93,19 +102,19 @@ public class WespacTellerBlockEntity extends BlockEntity implements MenuProvider
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.wespacmod.gem_polishing_station");
+        return Component.translatable("block.wespacmod.wespac_teller");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new GemPolishingStationMenu(pContainerId, pPlayerInventory, this, this.data);
+        return new WespacTellerMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.putInt("gem_polishing_station.progress", progress);
+        pTag.putInt("wespac_teller.progress", progress);
 
         super.saveAdditional(pTag);
     }
@@ -114,7 +123,7 @@ public class WespacTellerBlockEntity extends BlockEntity implements MenuProvider
     public void load(CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        progress = pTag.getInt("gem_polishing_station.progress");
+        progress = pTag.getInt("wespac_teller.progress");
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
@@ -136,7 +145,7 @@ public class WespacTellerBlockEntity extends BlockEntity implements MenuProvider
     }
 
     private void craftItem() {
-        ItemStack result = new ItemStack(ModItems.MONEY_ITEMS.get("one_dollar_coin").get(), 5);
+        ItemStack result = new ItemStack(ModItems.MONEY_ITEMS.get("credit_card").get(), 1);
         this.itemHandler.extractItem(INPUT_SLOT, 1, false);
 
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
@@ -144,8 +153,8 @@ public class WespacTellerBlockEntity extends BlockEntity implements MenuProvider
     }
 
     private boolean hasRecipe() {
-        boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == ModItems.MONEY_ITEMS.get("five_dollar_note").get();
-        ItemStack result = new ItemStack(ModItems.MONEY_ITEMS.get("one_dollar_coin").get());
+        boolean hasCraftingItem = this.itemHandler.getStackInSlot(INPUT_SLOT).getItem() == ModItems.MONEY_ITEMS.get("open_account_form").get();
+        ItemStack result = new ItemStack(ModItems.MONEY_ITEMS.get("credit_card").get());
 
         return hasCraftingItem && canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
     }

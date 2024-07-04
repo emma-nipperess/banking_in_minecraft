@@ -9,6 +9,7 @@ import com.wespac.wespacmod.item.ModCreativeModTabs;
 import com.wespac.wespacmod.item.ModItems;
 import com.wespac.wespacmod.screen.GemPolishingStationScreen;
 import com.wespac.wespacmod.screen.ModMenuTypes;
+import com.wespac.wespacmod.screen.WespacTellerScreen;
 import com.wespac.wespacmod.villager.ModVillagers;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.commands.CommandSourceStack;
@@ -92,6 +93,7 @@ public class WespacMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
+            MenuScreens.register(ModMenuTypes.WESPAC_TELLER_MENU.get(), WespacTellerScreen::new);
         }
     }
 }
