@@ -25,7 +25,7 @@ public class ModCreativeModTabs {
                         }
                         pOutput.accept(ModBlocks.GEM_POLISHING_STATION.get());
                         pOutput.accept(ModBlocks.BANK_COUNTER.get());
-
+                        pOutput.accept(ModBlocks.TELLER.get());
                     })
                     .build());
 

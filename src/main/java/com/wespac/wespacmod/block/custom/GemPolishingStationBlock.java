@@ -73,7 +73,6 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
 
 
 
-
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
     private static final OkHttpClient client = new OkHttpClient();
