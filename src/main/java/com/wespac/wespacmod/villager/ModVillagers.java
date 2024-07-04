@@ -24,7 +24,7 @@ public class ModVillagers {
                     1, 1));
 
     public static final RegistryObject<VillagerProfession> SOUND_MASTER =
-            VILLAGER_PROFESSIONS.register("bankteller", () -> new VillagerProfession("bankteller",
+            VILLAGER_PROFESSIONS.register("sound_master", () -> new VillagerProfession("sound_master",
                     holder -> holder.get() == SOUND_POI.get(), holder -> holder.get() == SOUND_POI.get(),
                     ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_ARMORER));
 
