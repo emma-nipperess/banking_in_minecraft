@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GemPolishingStationBlockEntity extends BlockEntity implements MenuProvider {
+public class WespacTellerBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2);
 
     private static final int INPUT_SLOT = 0;
@@ -57,31 +57,9 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
         // Add other conversions as needed
     }
 
-    public GemPolishingStationBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.GEM_POLISHING_BE.get(), pPos, pBlockState);
-        this.data = new ContainerData() {
-            @Override
-            public int get(int pIndex) {
-                return switch (pIndex) {
-                    case 0 -> GemPolishingStationBlockEntity.this.progress;
-                    case 1 -> GemPolishingStationBlockEntity.this.maxProgress;
-                    default -> 0;
-                };
-            }
-
-            @Override
-            public void set(int pIndex, int pValue) {
-                switch (pIndex) {
-                    case 0 -> GemPolishingStationBlockEntity.this.progress = pValue;
-                    case 1 -> GemPolishingStationBlockEntity.this.maxProgress = pValue;
-                }
-            }
-
-            @Override
-            public int getCount() {
-                return 2;
-            }
-        };
+    public WespacTellerBlockEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModBlockEntities.WESPAC_TELLER_BE.get(), pPos, pBlockState);
+        this.data = null;
     }
 
     @Override
