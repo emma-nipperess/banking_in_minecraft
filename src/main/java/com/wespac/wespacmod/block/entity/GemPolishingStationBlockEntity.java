@@ -28,6 +28,9 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GemPolishingStationBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(2);
 
@@ -39,6 +42,20 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 78;
+
+    // Currency conversion map
+    private static final Map<Item, Map<Item, Integer>> CURRENCY_CONVERSION_MAP = new HashMap<>();
+
+    static {
+        // Example conversion map
+        // 5 dollar note -> 3 one dollar coins + 1 two dollar coin
+        Map<Item, Integer> fiveDollarConversion = new HashMap<>();
+        fiveDollarConversion.put(ModItems.MONEY_ITEMS.get("one_dollar_coin").get(), 3);
+        fiveDollarConversion.put(ModItems.MONEY_ITEMS.get("two_dollar_coin").get(), 1);
+        CURRENCY_CONVERSION_MAP.put(ModItems.MONEY_ITEMS.get("five_dollar_note").get(), fiveDollarConversion);
+
+        // Add other conversions as needed
+    }
 
     public GemPolishingStationBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.GEM_POLISHING_BE.get(), pPos, pBlockState);
@@ -141,11 +158,21 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
     }
 
     private void craftItem() {
-        ItemStack result = new ItemStack(ModItems.MONEY_ITEMS.get("one_dollar_coin").get(), 5);
-        this.itemHandler.extractItem(INPUT_SLOT, 1, false);
+        ItemStack inputStack = this.itemHandler.getStackInSlot(INPUT_SLOT);
+        Item inputItem = inputStack.getItem();
 
-        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
-                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
+        if (CURRENCY_CONVERSION_MAP.containsKey(inputItem)) {
+            Map<Item, Integer> conversion = CURRENCY_CONVERSION_MAP.get(inputItem);
+            for (Map.Entry<Item, Integer> entry : conversion.entrySet()) {
+                Item resultItem = entry.getKey();
+                int resultCount = entry.getValue();
+
+                ItemStack outputStack = new ItemStack(resultItem, resultCount);
+                this.itemHandler.extractItem(INPUT_SLOT, 1, false);
+                this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(outputStack.getItem(),
+                        this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + outputStack.getCount()));
+            }
+        }
     }
 
     private boolean hasRecipe() {

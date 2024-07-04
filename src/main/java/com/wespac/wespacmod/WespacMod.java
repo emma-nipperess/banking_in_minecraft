@@ -7,6 +7,7 @@ import com.wespac.wespacmod.item.ModCreativeModTabs;
 import com.wespac.wespacmod.item.ModItems;
 import com.wespac.wespacmod.screen.GemPolishingStationScreen;
 import com.wespac.wespacmod.screen.ModMenuTypes;
+import com.wespac.wespacmod.villager.ModVillagers;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,7 +47,7 @@ public class WespacMod
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
 
-
+        ModVillagers.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

@@ -1,9 +1,17 @@
 {
   "item.wespacmod.five_dollar_note": "5 dollar note",
+  "item.wespacmod.twenty_dollar_note": "20 dollar note",
   "item.wespacmod.ten_dollar_note": "10 dollar note",
+  "item.wespacmod.hundred_dollar_note": "100 dollar note",
+  "item.wespacmod.fifty_dollar_note": "50 dollar note",
+  "item.wespacmod.ten_cent_coin": "10 cent coin",
+  "item.wespacmod.five_cent_coin": "5 cent coin",
+  "item.wespacmod.twenty_cent_coin": "20 cent coin",
+  "item.wespacmod.fifty_cent_coin": "50 dollar coin",
   "item.wespacmod.one_dollar_coin": "1 dollar coin",
   "item.wespacmod.two_dollar_coin": "2 dollar coin",
-  "item.wespacmod.fifty_dollar_note": "50 dollar note",
   "item.wespacmod.credit_card": "Credit Card",
-  "block.wespacmod.gem_polishing_station": "Gem Polishing Station"
+  "block.wespacmod.gem_polishing_station": "Wespac ATM",
+  "entity.minecraft.villager.wespacmod.bankteller": "Bank Teller",
+  "block.wespacmod.bank_counter": "Bank Counter"
 }
