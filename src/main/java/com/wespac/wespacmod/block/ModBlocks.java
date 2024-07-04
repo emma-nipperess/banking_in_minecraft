@@ -29,6 +29,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> WESPAC_TELLER = registerBlock("wespac_teller",
             () -> new WespacTellerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
+
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
