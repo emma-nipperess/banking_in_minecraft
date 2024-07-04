@@ -29,6 +29,10 @@ public class ModItems {
         for (String itemName : MONEY_ITEM_NAMES) {
             MONEY_ITEMS.put(itemName, ITEMS.register(itemName, () -> new Item(new Item.Properties())));
         }
+
+        // Register the credit card with custom item class
+        MONEY_ITEMS.put("credit_card", ITEMS.register("credit_card", () -> new CreditCardItem(new Item.Properties())));
+
     }
 
     public static void register(IEventBus eventBus) {

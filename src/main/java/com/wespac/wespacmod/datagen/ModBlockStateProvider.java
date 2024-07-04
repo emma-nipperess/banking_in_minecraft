@@ -25,8 +25,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.GEM_POLISHING_STATION.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/gem_polishing_station")));
 
+        simpleBlockWithItem(ModBlocks.BANK_COUNTER.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/bank_counter")));
+
         simpleBlockWithItem(ModBlocks.TELLER.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/teller")));
+
 
     }
 }

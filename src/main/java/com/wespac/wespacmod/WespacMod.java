@@ -1,14 +1,17 @@
 package com.wespac.wespacmod;
 
+import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.logging.LogUtils;
 import com.wespac.wespacmod.block.ModBlocks;
 import com.wespac.wespacmod.block.entity.ModBlockEntities;
+import com.wespac.wespacmod.command.ReplyCommand;
 import com.wespac.wespacmod.item.ModCreativeModTabs;
 import com.wespac.wespacmod.item.ModItems;
 import com.wespac.wespacmod.screen.GemPolishingStationScreen;
 import com.wespac.wespacmod.screen.ModMenuTypes;
 import com.wespac.wespacmod.villager.ModVillagers;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -59,8 +62,14 @@ public class WespacMod
 
     }
 
+    private void registerCommands(ServerStartingEvent event) {
+        CommandDispatcher<CommandSourceStack> dispatcher = event.getServer().getCommands().getDispatcher();
+        ReplyCommand.register(dispatcher);
+    }
+
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+        MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
     }
 
     // Add the example block item to the building blocks tab

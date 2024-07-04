@@ -12,6 +12,7 @@
   "item.wespacmod.two_dollar_coin": "2 dollar coin",
   "item.wespacmod.credit_card": "Credit Card",
   "block.wespacmod.gem_polishing_station": "Wespac ATM",
-  "entity.minecraft.villager.wespacmod.bankteller": "Bank Teller",
+  "entity.minecraft.villager.wespacmod.sound_master": "Sound Master",
+  "entity.minecraft.villager.wespacmod.bank_teller": "Bank Teller",
   "block.wespacmod.bank_counter": "Bank Counter"
 }

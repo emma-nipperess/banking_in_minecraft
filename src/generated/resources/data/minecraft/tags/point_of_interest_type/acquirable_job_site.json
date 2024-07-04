@@ -3,6 +3,10 @@
     {
       "id": "wespacmod:sound_poi",
       "required": false
+    },
+    {
+      "id": "wespacmod:bank_teller_poi",
+      "required": false
     }
   ]
 }
