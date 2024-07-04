@@ -1,5 +1,6 @@
 package com.wespac.wespacmod.event;
 
+
 import com.mojang.logging.LogUtils;
 import com.wespac.wespacmod.WespacMod;
 import com.wespac.wespacmod.item.ModItems;
@@ -30,7 +31,7 @@ import java.util.UUID;
 public class ModEvents {
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final OkHttpClient client = new OkHttpClient();
-    private static final String API_URL = "http://10.89.247.191:9000/";
+    private static final String API_URL = "http://10.89.247.191:9000/chat";
 
     private static final Set<UUID> chattingPlayers = new HashSet<>();
 
@@ -61,24 +62,32 @@ public class ModEvents {
             //event.setCanceled(true); // Cancel the chat event to prevent it from being broadcast
 
             String message = event.getMessage().getString();
-            chattingPlayers.remove(playerUUID); // Remove player from the chatting set
-
-            // Send message to ChatGPT API
-            sendChatMessage(message, player);
+            LOGGER.info("RAW MESSAGE " + message);
+            if (message.equals("Bye")) {
+                chattingPlayers.remove(playerUUID); // Remove player from the chatting set
+            } else {
+                // Send message to ChatGPT API
+                sendChatMessage(message, player);
+            }
+;
         }
     }
 
+
     private static void sendChatMessage(String message, ServerPlayer player) {
+
         RequestBody body = new FormBody.Builder()
                 .add("prompt", message)
-                .add("chat_id", player.getUUID().toString())
-                .add("max_tokens", "150")
                 .build();
 
+        LOGGER.info("Sending message: {}", message);
+
+        //RequestBody body = RequestBody.create(jsonBody, JSON);
         Request request = new Request.Builder()
                 .url(API_URL)
                 .post(body)
                 .build();
+        LOGGER.info(request.toString());
 
         client.newCall(request).enqueue(new Callback() {
             @Override
