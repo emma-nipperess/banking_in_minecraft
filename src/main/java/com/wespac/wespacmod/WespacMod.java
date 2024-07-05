@@ -4,7 +4,9 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.logging.LogUtils;
 import com.wespac.wespacmod.block.ModBlocks;
 import com.wespac.wespacmod.block.entity.ModBlockEntities;
+import com.wespac.wespacmod.command.ATMCommand;
 import com.wespac.wespacmod.command.ReplyCommand;
+import com.wespac.wespacmod.command.WithdrawCommand;
 import com.wespac.wespacmod.item.ModCreativeModTabs;
 import com.wespac.wespacmod.item.ModItems;
 import com.wespac.wespacmod.screen.GemPolishingStationScreen;
@@ -65,6 +67,8 @@ public class WespacMod
     private void registerCommands(ServerStartingEvent event) {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getServer().getCommands().getDispatcher();
         ReplyCommand.register(dispatcher);
+        ATMCommand.register(dispatcher);
+        WithdrawCommand.register(dispatcher);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
