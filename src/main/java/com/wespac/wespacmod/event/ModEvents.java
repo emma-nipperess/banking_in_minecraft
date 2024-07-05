@@ -45,7 +45,7 @@ public class ModEvents {
                 if (event.getEntity() instanceof ServerPlayer) {
                     ServerPlayer player = (ServerPlayer) event.getEntity();
                     chattingPlayers.add(player.getUUID());
-                    player.sendSystemMessage(Component.literal("You are now chatting with the bank teller. Type your message in the chat."));
+                    player.sendSystemMessage(Component.literal("Hello! My name is Westpac Steve, I'm a bank teller! I have a PhD in Finance at UQ so ask me anything... it can be about your bank account, any finance-related questions, instruction, or just anything!"));
                 }
             }
         }
@@ -90,7 +90,7 @@ public class ModEvents {
         GeminiAPI.client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                player.sendSystemMessage(Component.literal("Failed to connect to the chatbot."));
+                //player.sendSystemMessage(Component.literal("Failed to connect to the chatbot."));
                 LOGGER.error("Failed to connect to the chatbot", e);
             }
 
@@ -100,7 +100,7 @@ public class ModEvents {
                     String responseBody = response.body().string();
                     player.sendSystemMessage(Component.literal(responseBody));
                 } else {
-                    player.sendSystemMessage(Component.literal("The chatbot is unavailable at the moment."));
+                    //player.sendSystemMessage(Component.literal("The chatbot is unavailable at the moment."));
                     LOGGER.warn("ChatGPT is unavailable: {}", response.message());
                 }
             }
@@ -122,10 +122,71 @@ public class ModEvents {
                     new ItemStack(ModItems.MONEY_ITEMS.get("five_dollar_note").get(), 1),
                     16, 8, 0.02f));
 
-            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
                     new ItemStack(Items.EMERALD, 10),
                     new ItemStack(ModItems.MONEY_ITEMS.get("ten_dollar_note").get(), 1),
                     5, 12, 0.02f));
+
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("five_dollar_note").get(), 1),
+                    new ItemStack(Items.BAKED_POTATO, 1),
+                    16, 8, 0.02f));
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("one_dollar_coin").get(), 1),
+                    new ItemStack(Items.APPLE, 1),
+                    16, 8, 0.02f));
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("twenty_dollar_note").get(), 1),
+                    new ItemStack(Items.BEEF, 1),
+                    16, 8, 0.02f));
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("hundred_dollar_note").get(), 3),
+                    new ItemStack(Items.DIAMOND, 1),
+                    16, 8, 0.02f));
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("fifty_dollar_note").get(), 3),
+                    new ItemStack(Items.GOLD_INGOT, 1),
+                    16, 8, 0.02f));
+
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("ten_dollar_note").get(), 1),
+                    new ItemStack(Items.WATER_BUCKET, 1),
+                    16, 8, 0.02f));
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("fifty_cent_coin").get(), 3),
+                    new ItemStack(Items.TORCH, 1),
+                    16, 8, 0.02f));
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("two_dollar_coin").get(), 2),
+                    new ItemStack(Items.SUNFLOWER, 1),
+                    16, 8, 0.02f));
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("ten_cent_coin").get(), 1),
+                    new ItemStack(Items.AIR, 1),
+
+                    16, 8, 0.02f));
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("five_cent_coin").get(), 3),
+                    new ItemStack(Items.BLUE_DYE, 1),
+                    16, 8, 0.02f));
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("hundred_dollar_note").get(), 3),
+                    new ItemStack(Items.MAGENTA_BED, 1),
+                    16, 8, 0.02f));
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(ModItems.MONEY_ITEMS.get("twenty_dollar_note").get(), 3),
+                    new ItemStack(Items.WHITE_WOOL, 1),
+                    16, 8, 0.02f));
         }
 
     }
