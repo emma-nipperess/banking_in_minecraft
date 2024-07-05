@@ -46,7 +46,7 @@ public class ReplyCommand {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                player.sendSystemMessage(Component.literal("Failed to connect to the chatbot."));
+                //player.sendSystemMessage(Component.literal("Failed to connect to the chatbot."));
             }
 
             @Override
@@ -55,7 +55,7 @@ public class ReplyCommand {
                     String responseBody = response.body().string();
                     player.sendSystemMessage(Component.literal(responseBody));
                 } else {
-                    player.sendSystemMessage(Component.literal("The chatbot is unavailable at the moment."));
+                    //player.sendSystemMessage(Component.literal("The chatbot is unavailable at the moment."));
                 }
             }
         });

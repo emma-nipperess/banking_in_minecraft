@@ -28,5 +28,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 new ModelFile.UncheckedModelFile(modLoc("block/form_disp")));
 
 
+        simpleBlockWithItem(ModBlocks.LOAN_CLERK.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/loan_clerk")));
+
     }
 }

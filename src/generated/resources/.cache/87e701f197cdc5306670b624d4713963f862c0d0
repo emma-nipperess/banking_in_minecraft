@@ -1,9 +1,11 @@
-// 1.20.1	2024-07-05T12:38:15.2481589	Block States: wespacmod
+// 1.20.1	2024-07-05T13:01:17.5899871	Block States: wespacmod
 0323ef6df4294c94ccb8acd498faeb50d137d444 assets/wespacmod/blockstates/bank_counter.json
 bb18c28361b08493fd9d3535898b6343f5ab6613 assets/wespacmod/blockstates/form_disp.json
 bd9f4fe29723a8997d39c517aec63f7bbe86b639 assets/wespacmod/blockstates/gem_polishing_station.json
+41e43ab4c9790f51db3e5cdc41cfc8ecfb6bf0ca assets/wespacmod/blockstates/loan_clerk.json
 ae3149f19632b692ac024d2bf89963e64411a162 assets/wespacmod/blockstates/wespac_teller.json
 ded093ca7f6a123099daa3ed8c80f5be34f3b605 assets/wespacmod/models/item/bank_counter.json
 be45876268a563ea52a95331bceae52b4c2747ee assets/wespacmod/models/item/form_disp.json
 c6a42e1c4978e53056f146fb802984082f1d03f7 assets/wespacmod/models/item/gem_polishing_station.json
+8243a2fdefa261950f11180c217dbef562b0fc9e assets/wespacmod/models/item/loan_clerk.json
 56e736ca4d77a73de9b65d2a0b0b8c07c4fdd24d assets/wespacmod/models/item/wespac_teller.json
