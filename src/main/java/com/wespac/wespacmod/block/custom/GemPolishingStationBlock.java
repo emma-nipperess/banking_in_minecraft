@@ -3,14 +3,22 @@ package com.wespac.wespacmod.block.custom;
 import com.mojang.serialization.MapCodec;
 import com.wespac.wespacmod.block.entity.GemPolishingStationBlockEntity;
 import com.wespac.wespacmod.block.entity.ModBlockEntities;
+import com.wespac.wespacmod.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -64,30 +72,49 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof GemPolishingStationBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (GemPolishingStationBlockEntity)entity, pPos);
+                ItemStack heldItem = pPlayer.getItemInHand(pHand);
+
+                // Check if the player is holding a specific item (e.g., credit card)
+                if (ModItems.MONEY_ITEMS.containsKey("credit_card") && heldItem.getItem() == ModItems.MONEY_ITEMS.get("credit_card").get()) {
+                    // Perform actions specific to the credit card item
+                    pPlayer.sendSystemMessage(Component.literal("Scanning your card... please wait"));
+
+                    sendChatMessage(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            pPlayer.sendSystemMessage(Component.literal("Oops! Our servers are having problems, please try again :("));
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response
+                                response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String responseBody = response.body().string();
+                                // Parse and handle the response
+                                pPlayer.sendSystemMessage(Component.literal(responseBody));
+                            } else {
+                                pPlayer.sendSystemMessage(Component.literal("Oops! Our servers are having problems, please try again :("));
+                            }
+                        }
+                    });
+                } else {
+                    pPlayer.sendSystemMessage(Component.literal("Please hold a credit card to proceed."));
+                }
 
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }
         }
 
-
-
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
     private static final OkHttpClient client = new OkHttpClient();
-    private static final String API_URL =  "http://10.89.247.191:9000/";
-    private static final String API_KEY = "your-api-key";
+    private static final String API_URL =  "http://10.89.247.191:9000/intro";
 
-    private static void sendChatMessage(String message, Callback callback) {
-        RequestBody body = new FormBody.Builder()
-                .add("prompt", message)
-                .add("max_tokens", "150")
-                .build();
+    public static void sendChatMessage(Callback callback) {
 
         Request request = new Request.Builder()
                 .url(API_URL)
-                // .addHeader("Authorization", "Bearer " + API_KEY)
                 .get()
                 .build();
 
