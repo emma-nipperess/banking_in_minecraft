@@ -21,8 +21,7 @@ public class ModItems {
     private static final String[] MONEY_ITEM_NAMES = {
             "five_cent_coin", "ten_cent_coin", "twenty_cent_coin", "fifty_cent_coin",
             "one_dollar_coin", "two_dollar_coin", "five_dollar_note", "ten_dollar_note",
-            "twenty_dollar_note", "fifty_dollar_note", "hundred_dollar_note", "open_account_form"
-
+            "twenty_dollar_note", "fifty_dollar_note", "hundred_dollar_note"
 
     };
 
