@@ -27,6 +27,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModBlocks.BANK_COUNTER.get());
                         pOutput.accept(ModBlocks.WESPAC_TELLER.get());
                         pOutput.accept(ModBlocks.FORM_DISP.get());
+                        pOutput.accept(ModBlocks.LOAN_CLERK.get());
                     })
                     .build());
 

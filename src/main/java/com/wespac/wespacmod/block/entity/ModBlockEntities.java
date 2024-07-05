@@ -26,6 +26,12 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(FormDispenserBlockEntity::new,
                             ModBlocks.FORM_DISP.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<LoanClerkBlockEntity>> LOAN_CLERK_BE =
+            BLOCK_ENTITIES.register("loan_clerk_be", () ->
+                    BlockEntityType.Builder.of(LoanClerkBlockEntity::new,
+                            ModBlocks.LOAN_CLERK.get()).build(null));
+
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }
