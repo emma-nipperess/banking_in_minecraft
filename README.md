@@ -2,9 +2,13 @@
 
 WespacCraft is a Minecraft mod that simulates a Wespac Bank inside the Minecraft world. This mod aims to provide an engaging and interactive way for players to learn about financial literacy. By incorporating AI and VR capabilities, WespacCraft creates a realistic and immersive banking experience within the game. Players can interact with virtual bank tellers powered by AI to learn about various banking concepts, financial planning, and the importance of managing personal finances effectively.
 
+# Demo
+
+To watch this fabulous mod be demoed, please see this YouTube link: https://youtu.be/Hlinir6eGBA 
+
 ## Features
 
-- **Interactive Bank Simulation**: Simulate a real-life banking experience within Minecraft.
+- **Interactive Bank Simulation**: Simulate a real-life banking experience within Minecraft including loans, application forms, currency, credit cards and ATMs.
 - **AI-Powered Bank Tellers**: Interact with AI-driven virtual bank tellers to ask questions and receive personalized responses.
 - **Educational Content**: Learn about financial literacy, including banking concepts and financial planning.
 - **VR Capabilities**: Enhance the learning experience with immersive VR interactions.
