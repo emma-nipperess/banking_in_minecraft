@@ -26,6 +26,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModBlocks.GEM_POLISHING_STATION.get());
                         pOutput.accept(ModBlocks.BANK_COUNTER.get());
                         pOutput.accept(ModBlocks.WESPAC_TELLER.get());
+                        pOutput.accept(ModBlocks.FORM_DISP.get());
                     })
                     .build());
 

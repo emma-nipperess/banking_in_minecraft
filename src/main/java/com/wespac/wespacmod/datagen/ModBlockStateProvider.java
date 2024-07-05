@@ -24,5 +24,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 new ModelFile.UncheckedModelFile(modLoc("block/wespac_teller")));
 
 
+        simpleBlockWithItem(ModBlocks.FORM_DISP.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/form_disp")));
+
+
     }
 }

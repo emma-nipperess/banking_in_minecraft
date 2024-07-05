@@ -19,6 +19,7 @@ public class ModVillagers {
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS =
             DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS,  WespacMod.MODID);
 
+
     public static final RegistryObject<PoiType> SOUND_POI = POI_TYPES.register("sound_poi",
             () -> new PoiType(ImmutableSet.copyOf(ModBlocks.GEM_POLISHING_STATION.get().getStateDefinition().getPossibleStates()),
                     1, 1));
@@ -38,7 +39,8 @@ public class ModVillagers {
     public static final RegistryObject<VillagerProfession> BANK_TELLER =
             VILLAGER_PROFESSIONS.register("bank_teller", () -> new VillagerProfession("bank_teller",
                     holder -> holder.get() == BANK_TELLER_POI.get(), holder -> holder.get() == BANK_TELLER_POI.get(),
-                    ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CLERIC));
+                    ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_LIBRARIAN));
+
 
     // Define the POI type for the bank telle
 

@@ -2,6 +2,7 @@ package com.wespac.wespacmod.block;
 
 
 import com.wespac.wespacmod.WespacMod;
+import com.wespac.wespacmod.block.custom.FormDispenserBlock;
 import com.wespac.wespacmod.block.custom.WespacTellerBlock;
 import com.wespac.wespacmod.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -28,6 +29,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> WESPAC_TELLER = registerBlock("wespac_teller",
             () -> new WespacTellerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
+
+
+    public static final RegistryObject<Block> FORM_DISP = registerBlock("form_disp",
+            () -> new FormDispenserBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
