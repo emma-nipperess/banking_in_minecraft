@@ -40,6 +40,7 @@ public class ModVillagers {
                     holder -> holder.get() == BANK_TELLER_POI.get(), holder -> holder.get() == BANK_TELLER_POI.get(),
                     ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CLERIC));
 
+    // Define the POI type for the bank telle
 
     public static void register(IEventBus eventBus) {
         POI_TYPES.register(eventBus);

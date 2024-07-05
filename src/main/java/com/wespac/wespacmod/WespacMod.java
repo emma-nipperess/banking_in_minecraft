@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.logging.LogUtils;
 import com.wespac.wespacmod.block.ModBlocks;
 import com.wespac.wespacmod.block.entity.ModBlockEntities;
+import com.wespac.wespacmod.chat.GeminiAPI;
 import com.wespac.wespacmod.command.ATMCommand;
 import com.wespac.wespacmod.command.ReplyCommand;
 import com.wespac.wespacmod.command.WithdrawCommand;
@@ -11,6 +12,7 @@ import com.wespac.wespacmod.item.ModCreativeModTabs;
 import com.wespac.wespacmod.item.ModItems;
 import com.wespac.wespacmod.screen.GemPolishingStationScreen;
 import com.wespac.wespacmod.screen.ModMenuTypes;
+import com.wespac.wespacmod.screen.WespacTellerScreen;
 import com.wespac.wespacmod.villager.ModVillagers;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.commands.CommandSourceStack;
@@ -35,7 +37,7 @@ public class WespacMod
     // Define mod id in a common place for everything to reference
     public static final String MODID = "wespacmod";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
 
     public WespacMod()
@@ -96,6 +98,7 @@ public class WespacMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
+            MenuScreens.register(ModMenuTypes.WESPAC_TELLER_MENU.get(), WespacTellerScreen::new);
         }
     }
 }

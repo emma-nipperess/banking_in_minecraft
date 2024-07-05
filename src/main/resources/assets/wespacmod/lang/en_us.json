@@ -14,5 +14,6 @@
   "block.wespacmod.gem_polishing_station": "Wespac ATM",
   "entity.minecraft.villager.wespacmod.sound_master": "Sound Master",
   "entity.minecraft.villager.wespacmod.bank_teller": "Bank Teller",
+  "entity.minecraft.villager.wespacmod.wespac_teller": "Wespac Teller",
   "block.wespacmod.bank_counter": "Bank Counter"
 }

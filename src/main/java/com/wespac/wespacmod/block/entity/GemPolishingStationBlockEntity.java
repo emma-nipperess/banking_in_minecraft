@@ -158,21 +158,11 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
     }
 
     private void craftItem() {
-        ItemStack inputStack = this.itemHandler.getStackInSlot(INPUT_SLOT);
-        Item inputItem = inputStack.getItem();
+        ItemStack result = new ItemStack(ModItems.MONEY_ITEMS.get("one_dollar_coin").get(), 5);
+        this.itemHandler.extractItem(INPUT_SLOT, 1, false);
 
-        if (CURRENCY_CONVERSION_MAP.containsKey(inputItem)) {
-            Map<Item, Integer> conversion = CURRENCY_CONVERSION_MAP.get(inputItem);
-            for (Map.Entry<Item, Integer> entry : conversion.entrySet()) {
-                Item resultItem = entry.getKey();
-                int resultCount = entry.getValue();
-
-                ItemStack outputStack = new ItemStack(resultItem, resultCount);
-                this.itemHandler.extractItem(INPUT_SLOT, 1, false);
-                this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(outputStack.getItem(),
-                        this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + outputStack.getCount()));
-            }
-        }
+        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
+                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
     }
 
     private boolean hasRecipe() {
