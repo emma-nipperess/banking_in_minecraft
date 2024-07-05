@@ -111,6 +111,7 @@ public class WespacTellerBlock extends BaseEntityBlock {
             return null;
         }
 
+
         return createTickerHelper(pBlockEntityType, ModBlockEntities.WESPAC_TELLER_BE.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }

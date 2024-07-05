@@ -20,7 +20,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import okhttp3.*;
 import org.slf4j.Logger;
-
+import com.wespac.wespacmod.chat.GeminiAPI;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -30,8 +30,6 @@ import java.util.UUID;
 @Mod.EventBusSubscriber(modid = WespacMod.MODID)
 public class ModEvents {
     private static final Logger LOGGER = LogUtils.getLogger();
-    private static final OkHttpClient client = new OkHttpClient();
-    private static final String API_URL = "http://10.89.247.191:9000/chat";
 
     private static final Set<UUID> chattingPlayers = new HashSet<>();
 
@@ -84,12 +82,12 @@ public class ModEvents {
 
         //RequestBody body = RequestBody.create(jsonBody, JSON);
         Request request = new Request.Builder()
-                .url(API_URL)
+                .url(GeminiAPI.API_URL + "/chat")
                 .post(body)
                 .build();
         LOGGER.info(request.toString());
 
-        client.newCall(request).enqueue(new Callback() {
+        GeminiAPI.client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 player.sendSystemMessage(Component.literal("Failed to connect to the chatbot."));
