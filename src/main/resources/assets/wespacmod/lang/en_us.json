@@ -15,5 +15,7 @@
   "entity.minecraft.villager.wespacmod.sound_master": "Sound Master",
   "entity.minecraft.villager.wespacmod.bank_teller": "Bank Teller",
   "entity.minecraft.villager.wespacmod.wespac_teller": "Wespac Teller",
-  "block.wespacmod.bank_counter": "Bank Counter"
+  "block.wespacmod.bank_counter": "Bank Counter",
+  "block.wespacmod.form_disp": "Form Dispenser",
+  "creativetab.money_tab": "Wespac Banking Items"
 }

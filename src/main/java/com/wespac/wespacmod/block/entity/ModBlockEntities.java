@@ -21,6 +21,10 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(WespacTellerBlockEntity::new,
                             ModBlocks.WESPAC_TELLER.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<FormDispenserBlockEntity>> FORM_DISP_BE =
+            BLOCK_ENTITIES.register("form_disp_be", () ->
+                    BlockEntityType.Builder.of(FormDispenserBlockEntity::new,
+                            ModBlocks.FORM_DISP.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
