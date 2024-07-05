@@ -6,6 +6,7 @@ import com.wespac.wespacmod.block.ModBlocks;
 import com.wespac.wespacmod.block.entity.ModBlockEntities;
 import com.wespac.wespacmod.chat.GeminiAPI;
 import com.wespac.wespacmod.command.ATMCommand;
+import com.wespac.wespacmod.command.LoanCommand;
 import com.wespac.wespacmod.command.ReplyCommand;
 import com.wespac.wespacmod.command.WithdrawCommand;
 import com.wespac.wespacmod.item.ModCreativeModTabs;
@@ -71,6 +72,7 @@ public class WespacMod
         ReplyCommand.register(dispatcher);
         ATMCommand.register(dispatcher);
         WithdrawCommand.register(dispatcher);
+        LoanCommand.register(dispatcher);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
