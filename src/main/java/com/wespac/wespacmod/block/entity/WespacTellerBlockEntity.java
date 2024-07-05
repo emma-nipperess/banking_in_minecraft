@@ -157,7 +157,16 @@ public class WespacTellerBlockEntity extends BlockEntity implements MenuProvider
     private void resetProgress() {
         progress = 0;
     }
-    
+
+    private static String extractField(String input, String fieldName) {
+        String[] lines = input.split("\n");
+        for (String line : lines) {
+            if (line.startsWith(fieldName)) {
+                return line.substring(fieldName.length()).trim();
+            }
+        }
+        return null;
+    }
 
     private void craftItem(Player player) {
         ItemStack inputStack = this.itemHandler.getStackInSlot(INPUT_SLOT);
@@ -166,10 +175,13 @@ public class WespacTellerBlockEntity extends BlockEntity implements MenuProvider
         if (inputItem instanceof WritableBookItem || inputItem instanceof WrittenBookItem) {
             String bookText = extractTextFromBook(inputStack);
 
+            String name = extractField(bookText, "First Name:") + " " + extractField(bookText, "Last Name:");
+            String password = extractField(bookText, "Password:");
+
             WespacMod.LOGGER.info("RAW BOOK TEXT: " + bookText);
             RequestBody body = new FormBody.Builder()
-                    .add("name", bookText)
-                    .add("password", bookText)
+                    .add("name", name)
+                    .add("password", password)
                     .build();
 
             Request request = new Request.Builder()
@@ -181,7 +193,7 @@ public class WespacTellerBlockEntity extends BlockEntity implements MenuProvider
                 @Override
                 public void onFailure(Call call, IOException e) {
                     e.printStackTrace();
-                    //player.sendSystemMessage(Component.translatable("Error opening credit card"));
+                    player.sendSystemMessage(Component.translatable("Error opening credit card"));
                 }
 
                 @Override
@@ -191,7 +203,7 @@ public class WespacTellerBlockEntity extends BlockEntity implements MenuProvider
                         ItemStack creditCard = new ItemStack(ModItems.MONEY_ITEMS.get("credit_card").get());
                         player.drop(creditCard, false);
                     } else {
-                        //player.sendSystemMessage(Component.translatable("Failed to open credit card"));
+                        player.sendSystemMessage(Component.translatable("Failed to open credit card"));
                     }
                     response.close();
                 }
