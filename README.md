@@ -33,7 +33,7 @@ To watch this fabulous mod be demoed, please see this YouTube link: https://yout
 
 ### Installation
 
-1. **Download the WespacCraft Mod**: [Download Link] (replace with actual link)
+1. **Download the WespacCraft Mod**: Clone this repo
 2. **Install Forge**: Follow the instructions to install Minecraft Forge.
 3. **Add the Mod to Minecraft**:
     - Locate your Minecraft installation folder.
